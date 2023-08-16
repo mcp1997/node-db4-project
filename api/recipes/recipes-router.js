@@ -4,7 +4,7 @@ const { validateRecipeID } = require('./recipes.middleware')
 
 const router = express.Router()
 
-router.get('/:id', validateRecipeID, (req, res) => {
+router.get('/:recipe_id', validateRecipeID, (req, res) => {
   res.json('get recipe by ID')
 })
 
