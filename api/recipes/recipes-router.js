@@ -4,8 +4,12 @@ const { validateRecipeID } = require('./recipes.middleware')
 
 const router = express.Router()
 
-router.get('/:recipe_id', validateRecipeID, (req, res) => {
-  res.json('get recipe by ID')
+router.get('/:recipe_id', validateRecipeID, (req, res, next) => {
+  Recipe.getRecipeById(req.params.recipe_id)
+    .then(recipe => {
+      res.json(recipe)
+    })
+    .catch(next)
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
